@@ -31,7 +31,7 @@ exports.typeDefs = `
 
     getCurrentUser: User
     getUserCookies(username: String!): [Cookie]
-    getRestaurantCookies(restaurantname: String!): [Cookies]
+    getRestaurantCookies(restaurantname: String!): [Cookie]
   }
 
   type Token {
