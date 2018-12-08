@@ -2,11 +2,11 @@ exports.typeDefs = `
 
   type Cookie {
     _id: ID
-    name: String!
-    restaurant: String!
-    createdDate: String
-    likes: Int 
+    text: String!    
+    createdDate: String 
     username: String
+    restaurantname: String!
+    likes: Int
   }
 
   type User {
@@ -15,16 +15,23 @@ exports.typeDefs = `
     password: String! 
     email: String!
     joinDate: String
-    favorites: [Recipe]
+    favorites: [Cookie]
+  }
+
+  type Restaurant {
+    _id: ID
+    restaurantname: String!
+    location: String!
   }
 
   type Query {
-    getAllRecipes: [Recipe]
-    getRecipe(_id: ID!): Recipe
-    searchRecipes(searchTerm: String): [Recipe]
+    getAllCookies: [Cookie]
+    getCookie(_id: ID!): Cookie
+    searchCookies(searchTerm: String): [Cookie]
 
     getCurrentUser: User
-    getUserRecipes(username: String!): [Recipe]
+    getUserCookies(username: String!): [Cookie]
+    getRestaurantCookies(restaurantname: String!): [Cookies]
   }
 
   type Token {
@@ -32,28 +39,23 @@ exports.typeDefs = `
   }
 
   type Mutation {
-    addRecipe(
-      name: String!, 
-      description: String!, 
-      imageUrl: String!,
-      category: String!, 
-      instructions: String!, 
-      username: String
-    ): Recipe
+    addCookie(
+      text: String!,
+      username: String!,
+      restaurantname: String
+    ): Cookie
 
-    deleteUserRecipe(_id: ID): Recipe
+    deleteUserCookie(_id: ID): Cookie
 
-    updateUserRecipe(
+    updateUserCookie(
       _id: ID!, 
       name: String!, 
-      description: String!, 
-      imageUrl: String!,
-      category: String! 
-    ): Recipe
+      restaurantname: String
+    ): Cookie
 
-    likeRecipe(_id: ID!, username: String!): Recipe
+    likeCookie(_id: ID!, username: String!): Cookie
 
-    unlikeRecipe(_id: ID!, username: String!): Recipe
+    unlikeCookie(_id: ID!, username: String!): Cookie
 
     signinUser(
       username: String!, 

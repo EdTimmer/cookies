@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CookieSchema = new Schema({
-  name: {
+  text: {
     type: String,
     required: true
   },
-  restaurant: {
+  restaurantname: {
     type: String,
     required: true
   },
@@ -19,7 +19,7 @@ const CookieSchema = new Schema({
     default: 0
   },
   username: {
-    type: String,
+    type: String
   },
 });
 
