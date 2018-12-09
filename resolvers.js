@@ -83,7 +83,7 @@ exports.resolvers = {
     },
 
     updateUserCookie: async (root, { _id, text, restaurantname }, { Cookie }) => {
-      const updatedRecipe = await Cookie.findOneAndUpdate(
+      const updatedCookie = await Cookie.findOneAndUpdate(
         { _id },
         { $set: { text, restaurantname }},
         { new: true }

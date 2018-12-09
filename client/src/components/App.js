@@ -1,27 +1,65 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import posed from 'react-pose';
 
-class App extends Component {
+import { Query } from 'react-apollo';
+import { GET_ALL_COOKIES } from '../queries';
+
+import CookieItem from "./Cookie/CookieItem";
+import Spinner from './Spinner';
+
+const CookieList = posed.ul({
+  shown: {
+    x: '0%',
+    staggerChildren: 100
+  },
+  hidden: {
+    x: '-100%'
+  }
+});
+
+class App extends React.Component {
+  state = {
+    on: false
+  }
+
+  componentDidMount() {
+    setTimeout(this.slideIn, 200);
+  }
+
+  slideIn = () => {
+    this.setState({ on: !this.state.on});
+  }
+
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1 className="main-title">
+          Listen To The <strong>Cookies</strong>
+        </h1>
+        <Query query={GET_ALL_COOKIES}>
+          {({ data, loading, error }) => {
+            if (loading) return <Spinner />
+            if (error) return <div>Error</div>
+            // console.log(data)
+            const { on } = this.state;
+            return (
+              <CookieList 
+                pose={on ? 'shown' : 'hidden'}
+                className="cards"
+              >
+                {
+                  data.getAllCookies.map(cookie => (
+                    <CookieItem key={cookie._id} {...cookie} />
+                  ))
+                }
+              </CookieList>
+            )
+          }}
+        </Query>
       </div>
-    );
+    )
   }
 }
 

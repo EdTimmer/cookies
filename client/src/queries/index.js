@@ -1,7 +1,5 @@
 import { gql } from 'apollo-boost';
 
-// import { recipeFragments } from './fragments';
-
 /* Cookies Queries */
 
 export const GET_ALL_COOKIES = gql`
@@ -42,7 +40,7 @@ export const ADD_COOKIE = gql`
   mutation(
     $text: String!,
     $username: String,
-    $username: String
+    $restaurantname: String
   ) {
     addCookie(
       text: $text,
