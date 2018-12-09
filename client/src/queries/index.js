@@ -39,7 +39,7 @@ export const SEARCH_COOKIES = gql`
 export const ADD_COOKIE = gql`
   mutation(
     $text: String!,
-    $username: String,
+    $username: String!,
     $restaurantname: String
   ) {
     addCookie(

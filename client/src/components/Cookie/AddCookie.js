@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import CKEditor from 'react-ckeditor-component';
 
 import { Mutation } from 'react-apollo';
 import { ADD_COOKIE, GET_ALL_COOKIES, GET_USER_COOKIES } from '../../queries';

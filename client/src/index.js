@@ -12,9 +12,9 @@ import App from "./components/App.js";
 import Signin from "./components/Auth/Signin";
 import Signup from "./components/Auth/Signup";
 import withSession from "./components/withSession";
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 // import Search from "./components/Recipe/Search";
-// import RecipePage from "./components/Recipe/RecipePage";
+import CookiePage from "./components/Cookie/CookiePage";
 // import Profile from "./components/Profile/Profile";
 import AddCookie from "./components/Cookie/AddCookie";
 
@@ -61,15 +61,15 @@ const client = new ApolloClient({
 const Root = ({ refetch, session }) => (
   <Router>
     <Fragment>
-      {/*<Navbar session={session} />*/}
+      <Navbar session={session} />
       <Switch>
         <Route path="/" exact component={App} />
         {/*<Route path="/search" exact component={Search} />*/}
         <Route path="/signin" render={() => <Signin refetch={refetch} />} />
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Route path="/cookie/add" render={() => <AddCookie session={session} />} />
-        {/*<Route path="/recipes/:_id" component={RecipePage} />
-<Route path="/profile" render={() => <Profile session={session} /> } />*/}
+        <Route path="/cookies/:_id" component={CookiePage} />
+{/*<Route path="/profile" render={() => <Profile session={session} /> } />*/}
         <Redirect to="/" />
       </Switch>
     </Fragment>
